@@ -81,7 +81,10 @@ Our process includes the Effort of automation and involves more technical things
 But we were not able to continue the anaysis of the of RQ2 to the end as we require the credentials of the other PR's of other repo used by the authors. Plus it was a combursome task to fetch all the code and analyze if there was RegEx addition(RegEx Add) or RegEx Updation(RegEx Edit) or RegEx Deletion (RegEx Delete) or RegEx API changes in the PR. This is where we faltered and couldnot complete the reproduction of the RQ2. Since we coudnt automate the process of fetching the code of every PR using the PR link, we couldnt not suggest the 10 common fix patters to fix either a RegEx Bug or RegEx API Bug.   
 
 
+### Data Delta:   
 
+To understand if regexrelated bugs are similar in complexity to other software bugs, author have compared the regex-related PRs (regexPRs) with a public dataset of PRs from GitHub projects that use PRs in their development cycle. But we could't get the dataset of PR's from other projects as we reqired the credentials to be used in pygithub. We have managed to gather the details like number of commits, number of files changes and modified lines of code for the RQ2 analysis. But we failed to compare it with the PR's of other Repo.   
+Like Wise we found it hard to get all the lines of code being addressed in every PR and then analyze those lines of code to get the common fix patters for the RegEx related Bugs.   
 
 
 

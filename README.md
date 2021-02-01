@@ -5,15 +5,17 @@
 ##### Title: An Empirical Study on Regular Expression Bugs   
 ##### DBLP link: https://dl.acm.org/doi/10.1145/3379597.3387464  
 
-
+<br/>
+<br/>
 
 ## Requirements   
 ##### Hardware: Windows, Mac or Linux operating system. Good and fast processor.
 ##### Software: Anaconda, Python(pip install the required libraires mentioned below), Microsoft Excel
 
 <br/>
+<br/>
 
+## Process   
+##### Steps:   
+Windows, Mac or Linux operating system. Good and fast processor.
 
-## Requirements   
-##### Hardware: Windows, Mac or Linux operating system. Good and fast processor.
-##### Software: Anaconda, Python(pip install the required libraires mentioned below), Microsoft Excel

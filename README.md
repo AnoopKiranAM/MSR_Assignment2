@@ -16,8 +16,8 @@
 <br/>
 
 ## Process   
-#### Steps:   
-##### **Step:1 Install below third party libraries using below commands**
+### Steps:   
+#### **Step:1 Install below third party libraries using below commands**
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**a) Install python 3.7.4 (in Mac)**   
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install python3=3.7.4* OR Follow the steps given here for windows - https://phoenixnap.com/kb/how-to-install-python-3-windows 
@@ -36,6 +36,13 @@
 
 
 
-##### **Step:2 Download this github repository**   
+#### **Step:2 Download this github repository**   
 **git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**   
 
+
+<br/>
+<br/>
+#### **Step:3 Run Anaconda and Open the jupyter Notebook in browser**    
+<br/>
+<br/>
+#### **Step:4 Make sure the data.csv file is in the data folder and run the python file "MSR_assignment-2"**  

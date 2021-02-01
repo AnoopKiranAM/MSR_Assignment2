@@ -34,3 +34,8 @@ pip install matplotlib==3.1.1
 **e) Install GitPython 3.1.0**   
 pip install GitPython==3.1.0    
 
+
+
+**Download this github repository**   
+**git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**   
+

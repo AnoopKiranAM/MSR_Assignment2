@@ -38,12 +38,12 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pip install beautifulsoup4
   
 
-#### **Step:2 Download this github repository**   
+**Step:2** Download this github repository    
 **git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**     
 
-#### **Step:3 Run Anaconda and Open the jupyter Notebook in browser**    
+**Step:3** Run Anaconda and Open the jupyter Notebook in browser    
 
-#### **Step:4 Make sure the data.csv file is in the data folder and run the python file "[MSR_assignment-2](https://github.com/AnoopKiranAM/MSR_Assignment2/blob/main/process/MSR_assignment-2.ipynb)"**     
+**Step:4** Make sure the data.csv file is in the data folder and run the python file "[MSR_assignment-2](https://github.com/AnoopKiranAM/MSR_Assignment2/blob/main/process/MSR_assignment-2.ipynb)"**     
 
 ### Validation:
 

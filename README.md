@@ -43,7 +43,7 @@
 
 #### **Step:3 Run Anaconda and Open the jupyter Notebook in browser**    
 
-#### **Step:4 Make sure the data.csv file is in the data folder and run the python file "MSR_assignment-2"**     
+#### **Step:4 Make sure the data.csv file is in the data folder and run the python file "[MSR_assignment-2](https://github.com/AnoopKiranAM/MSR_Assignment2/blob/main/process/MSR_assignment-2.ipynb)"**     
 
 ### Validation:
 

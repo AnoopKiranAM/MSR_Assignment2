@@ -47,5 +47,15 @@
 
 ### Validation:
 
-#### The output of the execution will be in the data folder with the name "result.csv". For the quicker execution we have only taken the pull request of apache repo. With all the 256 Pull request the execution takes more time as it has to scrape all the git repo of the 356 PR's
+The output of the execution will be stored in the data folder with the name "result.csv". For the quicker execution we have only taken the pull request of apache repo. With all the 356 Pull request the execution takes more time as it has to scrape all the git repo of the 356 PR's.   
+We have scraped the comment and the title of all the PR's and answered the research question 1
+#### RQ1- What are the characteristics of the problems being addressed in regex-related PRs?   
+We have automated the process which was manually done in the researh paper. We have looped each and every PR. Took the comments, conversations and title and analyzed each of them with the Key word to form a **Root Cause** and **Manifestaiton** which was done in research paper.   
+Identified the 3 root cause and manifestation within each type of root cause 
+
+
+
+
+
+
 

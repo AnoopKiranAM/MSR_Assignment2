@@ -16,8 +16,8 @@
 <br/>
 
 ## Process   
-##### Steps:   
-**Install below third party libraries using below commands**
+#### Steps:   
+##### **Step:1 Install below third party libraries using below commands**
 
   **a) Install python 3.7.4 (in Mac)**   
   sudo apt-get install python3=3.7.4* OR Follow the steps given here for windows - https://phoenixnap.com/kb/how-to-install-python-3-windows 
@@ -36,6 +36,6 @@
 
 
 
-**Download this github repository**   
+##### **Step:2 Download this github repository**   
 **git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**   
 

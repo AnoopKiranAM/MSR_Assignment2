@@ -19,20 +19,20 @@
 #### Steps:   
 ##### **Step:1 Install below third party libraries using below commands**
 
-  **a) Install python 3.7.4 (in Mac)**   
-  sudo apt-get install python3=3.7.4* OR Follow the steps given here for windows - https://phoenixnap.com/kb/how-to-install-python-3-windows 
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**a) Install python 3.7.4 (in Mac)**   
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install python3=3.7.4* OR Follow the steps given here for windows - https://phoenixnap.com/kb/how-to-install-python-3-windows 
 
-  **b) Install numpy 1.17.2**   
-  pip install numpy==1.17.2   
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**b) Install numpy 1.17.2**   
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install numpy==1.17.2   
 
-  **c) Install pandas 0.25.1**   
-  pip install pandas==0.25.1   
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**c) Install pandas 0.25.1**   
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install pandas==0.25.1   
 
-  **d) Install matplotlib 3.1.1**   
-  pip install matplotlib==3.1.1    
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**d) Install matplotlib 3.1.1**   
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install matplotlib==3.1.1    
 
-  **e) Install GitPython 3.1.0**   
-  pip install GitPython==3.1.0    
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**e) Install GitPython 3.1.0**   
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install GitPython==3.1.0    
 
 
 

@@ -39,12 +39,13 @@
   
 
 #### **Step:2 Download this github repository**   
-**git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**   
-
-
-<br/>   
+**git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**     
 
 #### **Step:3 Run Anaconda and Open the jupyter Notebook in browser**    
-<br/>   
 
-#### **Step:4 Make sure the data.csv file is in the data folder and run the python file "MSR_assignment-2"**  
+#### **Step:4 Make sure the data.csv file is in the data folder and run the python file "MSR_assignment-2"**     
+
+### Validation:
+
+#### The output of the execution will be in the data folder with the name "result.csv". For the quicker execution we have only taken the pull request of apache repo. With all the 256 Pull request the execution takes more time as it has to scrape all the git repo of the 356 PR's
+

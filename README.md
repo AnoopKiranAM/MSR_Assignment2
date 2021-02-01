@@ -38,8 +38,8 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pip install beautifulsoup4
   
 
-**Step:2** Download this github repository    
-**git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**     
+**Step:2** Download this github repository using the command  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**     
 
 **Step:3** Run Anaconda and Open the jupyter Notebook in browser    
 

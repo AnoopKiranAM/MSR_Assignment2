@@ -32,9 +32,11 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install matplotlib==3.1.1    
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**e) Install GitPython 3.1.0**   
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install GitPython==3.1.0    
-
-
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install GitPython==3.1.0   
+  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**e) Install Beautiful Soup**   
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pip install beautifulsoup4
+  
 
 #### **Step:2 Download this github repository**   
 **git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**   

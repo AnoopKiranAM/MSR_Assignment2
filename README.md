@@ -10,3 +10,10 @@
 ## Requirements   
 ##### Hardware: Windows, Mac or Linux operating system. Good and fast processor.
 ##### Software: Anaconda, Python(pip install the required libraires mentioned below), Microsoft Excel
+
+<br/>
+
+
+## Requirements   
+##### Hardware: Windows, Mac or Linux operating system. Good and fast processor.
+##### Software: Anaconda, Python(pip install the required libraires mentioned below), Microsoft Excel

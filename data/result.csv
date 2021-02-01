@@ -1,0 +1,481 @@
+,title,comment,num_commits,files_changed,code_churn,Root Cause,Manifestation,Category
+0,"
+        Added LN ST PE vars to svl-core
+      ","This is related to last mail thread..$LN = for getting no of chars of list size (using delimiter)
+$ST = substring using start and end(optional) indexes. And python like -start works here
+eg arg=apple start=-2 returns le.$PE = extracting matched regex groups.Let me know if some modifications required.",4,7,387,regEx,other failure, 
+1,"
+        Add SQL REGEXP_EXTRACT function; add ""index"" to ""regex"" extractionFn.
+      ",Syntax is the same as Hive/Presto's REGEXP_EXTRACT..,2,8,252,regEx,new feature,regex like implementation
+2,"
+        Initial pull request for the Gobblin Log Parser
+      ","This pull request contains the changes for MutliConverter and MultiConverterTest..This pull request adds a series of Converters and a Source class..Converters:.ObjectToStringConverter.java - converts an Object to its String representation
+StringFilterConverter.java - filters out an inputRecord based on whether or not it matches a regex
+StringSplitterConverter.java - splits a string based on some configurable value.Source:.DatePartitionedSource.java - implementation of the Source interface that reads data from a date-partitioned directory
+MultiWorkUnitWeightedQueue.java - users a PriorityQueue to pair WorkUnits together based on some weight.",19,18,1384,regEx,new feature,regex configuration entry
+3,"
+        [AMBARI-23334] Using the proper regular expression to validate SSO provider URL
+      ",The regular expression we use to validate --sso-provider-url in setup-sso tool was restrictive (it only allowed host:port input. I modified the code to have the appropriate regex..Unit testing.,3,2,28,regEx,incorrect behavior, 
+4,"
+        NUTCH-2394 Fix of bugs detected by static code analysis
+      ",String.trim() without assignment.avoid strings to fail as regex.Pattern.possible NPE in URLPartitioner: reworked code.,2,0,0,regEx,compile error, 
+5,"
+        [AMBARI-24797] Support regex based metric inclusion in KafkaTimelineM…
+      ","…etricsReporter..The request is to to add an additional config property external.kafka.metrics.include.regex to include metrics based on regex patterns. This property can take multiple comma separated regex expressions..Implementation Logic.By default, a metric will be included..If the metric starts with any of the prefixes in the exclude.prefix property, it is a candidate for discarding..However, for an ""excluded"" metric, if the metric starts with any of the prefixes in include.prefix or matches any pattern in include.regex, it will NOT be discarded..Manual and unit testing..",1,0,0,regEx,new feature,regex configuration entry
+6,"
+        Feature to ""fix"" filtering on  multi-valued dimensions
+      ","Currently, if you have a row in druid that has a multi-valued dimension with values [""v1"", ""v2"", ""v3""] and you send a query grouping by that dimension with filter for value ""v1"". In the response you will get rows containing ""v2"" and ""v3"" as well.
+For more details see the UT MultiValuedDimensionTest.testGroupByWithDimFilter() in this PR..This PR introduces the feature to add regex or list-of-string-values filters in new DimensionSpec implementations which can be used to do proper filtering on multi-valued dimensions so that unwanted rows are discarded as early in processing pipeline as possible..Not having this ability causes unnecessary major resource utilization across brokers and historicals where result set would sometime contain 90% unwanted rows..",3,0,0,regEx,new feature, 
+7,"
+        Regex replacement dsl
+      ","Adds ability to perform a regex replacement in YAML. Either directly as a string, or returning a Function<String, String> for use in (e.g.) Transformer.TRANSFORMATION_FROM_VALUE.",4,8,351,regEx,other failure,regex like implementation
+8,"
+        AMBARI-23230 Upgrade Solr configuration while upgrading Ambari 2.6.1 …
+      ","…-> 2.7.0.upgrade solrconfig.xml of logsearch, solr, ranger and atlas stored in the Ambari database while upgrading Ambari.workaround for upgrading logsearch-server and logfeeder: rpm and deb packages does not create links in the /etc/ambari-logesearch-[logfeeder|portal] directory.set the default conf directory to /usr/lib/ambari-logsearch[logfeeder|portal]/conf.fix: logsearch_ui_protocol and logsearch_ui_port values where exchanged during Ambari upgrade.Unit tests for regular expressions
+Manually using vagrant:.Install Ambari 2.6.2 and deploy a HDP 2.6 cluster: zookeeper, logsearch, ambari-infra, ranger.Stop logsearch.Delete collections from Infra Solr.upgrade Ambari to 2.7.0.upgrade Infra Solr and Logsearch in each host manually..Start Logsearch.Check all collections are created.Check all the solrconfig.xmls are upgraded.Please review:
+@oleewere @zeroflag @g-boros.",1,16,2191,regEx,incorrect behavior,regex configuration entry
+9,"
+        SLING-7932 - Use Regex to parse mvn GAVs and URLs
+      ",initial checkin.,1,2,112,Other,bad smell, 
+10,"
+        TAMAYA-340 Bugfix for regex ""\\."" vs literal "".""
+      ","String.replaceAll(String, String) takes a regex as its first argument,
+not a literal replaceable string.  The result of this is that any
+single-character environment variable is converted to use the ""_"" key
+which has special significance to the system.  Tests in the extensions
+repo include some that have a single character which this change should
+get working again.  I've included a test in this repo for that case as
+well..",1,0,0,regEx,incorrect behavior,accepting invalid strings(T2)
+11,"
+        GUACAMOLE-699: Add helper script for verifying translations.
+      ","This change adds a utility script, guacamole/util/check-translation.py, which performs automated comparisons between the JSON files that define Guacamole's translated strings..By default, strings which are present in English but absent in the translation will be listed (these will need to be added), as well as strings which are present in the translation but not in English (these are likely incorrect and should be removed). These checks can be disabled with command line options, if desired..An additional duplicate string check can be enabled to test whether strings were incorrectly copied verbatim from English without being translated at all. This check includes some obvious exclusions (empty strings, simple numbers, protocol names, ""Apache Guacamole""), but will likely produce false positives. It is disabled by default unless requested on the command line..",1,0,0,Other,new feature,data processing
+12,"
+        refactor FastDateParser
+      ","use hashmap for performance
+break down regular expressions to per-format, allowing
+ParsePosition to get set
+add parse with Calendar input, allowing client to set leniency
+and/or replace display names.",1,0,0,regEx,new feature, 
+13,"
+        Add ""like"" filter.
+      ","The main purpose of this is a performance boost over the regex filter (which can do similar stuff) for prefix patterns like ""foo%"" (see benchmarks below). A secondary purpose is making life easier for people that are familiar with SQL LIKE syntax..Benchmarks:.matchLikeEquals is foo LIKE ""1000000"".matchSelectorEquals is foo = ""1000000"" using the existing selector filter.matchLikePrefix is foo LIKE ""50%"".matchRegexPrefix is foo RLIKE ""^50.*"" using the existing regex filter.",9,10,1085,regEx,incorrect behavior,regex like implementation
+14,"
+        Fixed Get Apple OSX Version method
+      ","iOS.While working on an upcoming PR (#377 ) for improving the test coverage, I noticed that the get_apple_osx_version method has been returning undefined..After further investigation, the RegEx pattern has been looking for OSX SDK version OS X no longer exists since Xcode 8+.Example print outs:
+Xcode 7.3: https://travis-ci.org/erisu/macos-test/jobs/395785417
+Xcode 8: https://travis-ci.org/erisu/macos-test/jobs/395785418
+For other versions: https://travis-ci.org/erisu/macos-test/builds/395785415.From the above print out, I determined that the RegEx pattern should be updated to macOS.https://travis-ci.org/erisu/cordova-ios/builds/395835801.https://ci.appveyor.com/project/erisu/cordova-ios/build/1.0.3.Note: Oddly Node 4 appears to be failing but I have submitted PR #375 to drop Node 4 support..~Reported an issue in the JIRA database~~.Commit message follows the format: ""CB-3232: (android) Fix bug with resolving file paths"", where CB-xxxx is the JIRA ID & ""android"" is the platform affected..Added automated test coverage as appropriate for this change..",1,0,0,Other,bad smell,rejecting valid strings (T1)
+15,"
+        Partitioned avro
+      ","
+Refactor DatePartitionedAvroFileSource to separate out the mechanism of
+retrieving files that match a watermark from the logic of creating work
+units.
+.Refactor DatePartitionedAvroFileSource to separate out the mechanism of
+retrieving files that match a watermark from the logic of creating work
+units..
+Add a regex based partitioner. This is similar to
+DatePartitionedNestedRetriever, but is optimized for cases where there
+are a small number of snapshots in the source directory and the
+snapshots themselves may be materialized at semi-random intervals.
+.Add a regex based partitioner. This is similar to
+DatePartitionedNestedRetriever, but is optimized for cases where there
+are a small number of snapshots in the source directory and the
+snapshots themselves may be materialized at semi-random intervals..",2,0,0,regEx,other failure,bad smells
+16,"
+        Email validation blocks upper case letters
+      ",Fix makes email validation regex case insensitive..,2,0,0,regEx,other failure, 
+17,"
+        RYA-24 issue with hashes and regex queries
+      ","
+No description provided.
+.",1,0,0,regEx,other failure, 
+18,"
+        WW-4834 Improve RegEx used to validate URLs
+      ","
+No description provided.
+.",1,0,0,Other,other failure, 
+19,"
+        Changing regular expression in wordcount to look for unicode characters.
+      ","I change regular expression re.findall(r'[A-Za-z0-9\']+', text_line) for re.findall(r'[\w\']+', text_line, re.UNICODE)..Follow this checklist to help us incorporate your contribution quickly and easily:. Format the pull request title like [BEAM-XXX] Fixes bug in ApproximateQuantiles, where you replace BEAM-XXX with the appropriate JIRA issue, if applicable. This will automatically link the pull request to the issue.. If this contribution is large, please file an Apache Individual Contributor License Agreement..It will help us expedite review of your Pull Request if you tag someone (e.g. @username) to look at it..",4,0,0,regEx,incorrect behavior, 
+20,"
+        MINOR: Rename RecordFormat to RecordVersion
+      ","Also include a few clean-ups:.Method/variable/parameter renames to make them consistent with
+the class name.Return ApiVersion from minSupportedFor.Use values to remove some code duplication.Reduce duplication in ApiVersion by introducing the shortVersion
+method and building the versions map programatically.Avoid unnecessary regex in ApiVersion.apply.Added scaladoc to a few methods.Some of these were originally discussed in:.#4583 (review).Added a test for ApiVersion.shortVersion. Relying on existing tests
+for the rest since there is no change in behaviour.. Verify design and implementation. Verify test coverage and CI build status. Verify documentation (including upgrade notes).",5,8,289,regEx,incorrect behavior,bad smells
+21,"
+        LANG-1023
+      ","WordUtils.wrap: Customizable breakable characters (not just space/whitespace).changed wrap method to use regex pattern to find breakable characters rather than only spaces. added a few basic tests for ""regex wrap"".",3,0,0,regEx,new feature,code smells
+22,"
+        AMBARI-24758. Ambari-agent takes up too many cpu on perf
+      ","Profiling results:.ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+14129 1426.122    0.101 1426.122    0.101 {time.sleep}
+1    0.337    0.337 1426.769 1426.769 main.py:358(run_threads)
+331    0.219    0.001    0.219    0.001 {method 'acquire' of 'thread.lock' objects}
+11    0.181    0.016    0.181    0.016 {built-in method poll}
+1    0.108    0.108    0.108    0.108 {method 'do_handshake' of '_ssl._SSLSocket' objects}
+14151    0.042    0.000    0.042    0.000 threading.py:571(isSet)
+125    0.028    0.000    0.028    0.000 {method 'flush' of 'file' objects}
+5078    0.027    0.000    0.052    0.000 decoder.py:65(py_scanstring)
+15    0.020    0.001    0.020    0.001 {posix.read}
+5093    0.020    0.000    0.024    0.000 {method 'sub' of '_sre.SRE_Pattern' objects}
+1    0.019    0.019    0.019    0.019 {method 'connect' of '_socket.socket' objects}
+15365    0.018    0.000    0.018    0.000 {method 'match' of '_sre.SRE_Pattern' objects}
+55424/13131    0.016    0.000    0.057    0.000 encoder.py:332(_iterencode_dict)
+38241    0.014    0.000    0.014    0.000 {isinstance}
+21    0.013    0.001    0.022    0.001 collections.py:282(namedtuple)
+473/5    0.012    0.000    0.073    0.015 decoder.py:148(JSONObject)
+5078    0.009    0.000    0.034    0.000 encoder.py:43(py_encode_basestring_ascii)
+5    0.006    0.001    0.070    0.014 init.py:122(dump)
+13251    0.005    0.000    0.005    0.000 {method 'write' of 'file' objects}
+7    0.004    0.001    0.004    0.001 {ambari_commons.libs.x86_64._posixsubprocess.fork_exec}
+5638    0.004    0.000    0.004    0.000 encoder.py:49(replace)
+3167/5    0.003    0.000    0.073    0.015 scanner.py:27(_scan_once)
+13353/9909    0.003    0.000    0.030    0.000 encoder.py:279(_iterencode_list)
+75    0.003    0.000    0.003    0.000 {method 'read' of '_ssl._SSLSocket' objects}
+3177/8    0.003    0.000    0.008    0.001 Utils.py:124(make_immutable)
+13131    0.003    0.000    0.060    0.000 encoder.py:409(_iterencode)
+11128    0.003    0.000    0.003    0.000 {method 'groups' of '_sre.SRE_Match' objects}
+2202/45    0.003    0.000    0.004    0.000 Utils.py:135(get_mutable_copy)
+474/10    0.002    0.000    0.008    0.001 Utils.py:170(init)
+238    0.002    0.000    0.002    0.000 {time.localtime}
+119    0.002    0.000    0.004    0.000 init.py:242(init)
+3759    0.002    0.000    0.002    0.000 {method 'isalnum' of 'str' objects}
+14752    0.002    0.000    0.002    0.000 {method 'end' of '_sre.SRE_Match' objects}
+16854    0.002    0.000    0.002    0.000 {method 'append' of 'list' objects}
+5098    0.002    0.000    0.002    0.000 {method 'join' of 'unicode' objects}
+238    0.002    0.000    0.007    0.000 init.py:451(format)
+13    0.002    0.000    0.004    0.000 metric_alert.py:286(init)
+7    0.001    0.000    0.026    0.004 subprocess32.py:1153(_execute_child)
+41    0.001    0.000    0.001    0.000 {open}
+616    0.001    0.000    0.001    0.000 {method 'format' of 'str' objects}
+238    0.001    0.000    0.004    0.000 init.py:404(formatTime)
+18    0.001    0.000    0.001    0.000 {posix.listdir}
+5    0.001    0.000    0.072    0.014 ClusterCache.py:131(persist_cache)
+4032    0.001    0.000    0.003    0.000 collections.py:323()
+18    0.001    0.000    0.001    0.000 {method 'sort' of 'list' objects}
+90    0.001    0.000    0.001    0.000 {built-in method now}
+238    0.001    0.000    0.001    0.000 {time.strftime}
+119    0.001    0.000    0.001    0.000 init.py:1215(findCaller)
+5706    0.001    0.000    0.001    0.000 {method 'group' of '_sre.SRE_Match' objects}
+281    0.001    0.000    0.001    0.000 threading.py:146(acquire)
+281    0.001    0.000    0.001    0.000 threading.py:186(release)
+119    0.001    0.000    0.001    0.000 {method 'seek' of 'file' objects}
+1    0.001    0.001    0.001    0.001 ClusterTopologyCache.py:58(on_cache_update)
+119    0.001    0.000    0.005    0.000 handlers.py:144(shouldRollover)
+50/5    0.001    0.000    0.035    0.007 decoder.py:223(JSONArray)
+Major cpu cosumers:.Regexp operation:
+As we can see a lot of time is took for regexp operations. This happens because we use non-compiled regular expressions..Json operations:
+Another major cpu consumer is json module, because _speedups.so is not compiled for python2.7 currently. We have this situation. This is tackled by other issue.Main thread waking up/sleeping too often.
+This seems to create quite a bit cpu usage.
+The approach was implemented so agent can check for SIGTERM (ambari-agent stop). A proper solution should be a usage signal.pause() instead of sleep/wakeup..",3,9,60,regEx,bad smell, 
+23,"
+        373 bazel configure anaconda - deterministic install location
+      ",#373 anaconda bazel-configure with deterministic install location (using regex on 'Anaconda') format Python 2.7.11 :: Anaconda 2.2.0 (x86_64).,3,0,0,regEx,other failure,regex configuration entry
+24,"
+        MINOR: Make regular expressions into static 
+      ","@ijuma I made a new PR after several rebases and merges of trunk. It's the same as this: #5042 except only 1 commit..This should improve performance, as in-place means that the regex has to be compiled again each time the code path is traversed. Which is not performant..A nice writeup on this topic can be found here: https://softwareengineering.stackexchange.com/questions/216320/java-regex-patterns-compile-time-constants-or-instance-members.And it's also recommended in Joshua Bloch's ""Effective Java 3rd Edition"" (Item 6: Avoid creating unnecessary objects). Verify design and implementation. Verify test coverage and CI build status (Are there code coverage reports?). Verify documentation (including upgrade notes).",1,11,88,regEx,incorrect behavior, 
+25,"
+        [TE] Bug Fix - Emails not sent out to all the recipients
+      ","Issue:
+Comma separated emails having whitespaces are being discarded.Changes:.Trim whitespaces before validating email.Replace REGEX with InternetAddress.",1,0,0,Other,bad smell, 
+26,"
+        TINKERPOP-1595 Optimize TraversalVertexProgram
+      ",https://issues.apache.org/jira/browse/TINKERPOP-1595.I did as the issue requested and optimized TraversalVertexProgram. Definitely some hotspots in there that have been removed. I'd say that the main fixes involved the direct lookup of clone() in MemoryComputeKey rather than cycling all methods and the use of Base64 encoding instead of CSV style string/regex derser for traversals in OLAP..Feel free to VOTE but this change will not be merged until we open development for 3.2.10..All tests pass with docker/build.sh -t -n -i.VOTE +1.,8,7,68,regEx,incorrect behavior,bad smells
+27,"
+        GEODE-4792: Expand ArgumentRedactor regular expression logic for …
+      ","…better self-documentation..Thank you for submitting a contribution to Apache Geode..In order to streamline the review of the contribution we ask you
+to ensure the following steps have been taken:.
+ Is there a JIRA ticket associated with this PR? Is it referenced in the commit message?
+. Is there a JIRA ticket associated with this PR? Is it referenced in the commit message?.
+ Has your PR been rebased against the latest commit within the target branch (typically develop)?
+. Has your PR been rebased against the latest commit within the target branch (typically develop)?.
+ Is your initial contribution a single, squashed commit?
+. Is your initial contribution a single, squashed commit?.
+ Does gradlew build run cleanly?
+. Does gradlew build run cleanly?.
+ Have you written or updated unit tests to verify your changes?
+. Have you written or updated unit tests to verify your changes?.
+[n/a] If adding new dependencies to the code, are these dependencies licensed in a way that is compatible for inclusion under ASF 2.0?
+.[n/a] If adding new dependencies to the code, are these dependencies licensed in a way that is compatible for inclusion under ASF 2.0?.Please ensure that once the PR is submitted, you check travis-ci for build issues and
+submit an update to your PR as soon as possible. If you need help, please send an
+email to dev@geode.apache.org..",2,0,0,Other,new feature, 
+28,"
+        [AIRFLOW-2780] Add IMAP Hook to retrieve email attachments
+      "," My PR addresses the following Airflow JIRA issues and references them in the PR title.. My PR adds the feature to be able to interact with a mail server via the IMAP Protocol. It exposes the following methods:.has_mail_attachment: Can be used in a Sensor to poke the mail server for attachments with the given name and returns True if at least one has been found and False if not..retrieve_mail_attachments: Can be used in an Operator to do sth. with the attachments returned as list of tuple (filename, payload)..download_mail_attachments: Can be used in an Operator to download the attachment.. My PR adds the following unit tests OR does not need testing for this extremely good reason:.test_connect_and_disconnect: this tests calls the ImapHook as ContextManager and so it tests for both (on enter/connect and on exit/disconnect).test_has_mail_attachments_found.test_has_mail_attachments_not_found.test_has_mail_attachments_with_regex_found.test_has_mail_attachments_with_regex_not_found.test_retrieve_mail_attachments_found.test_retrieve_mail_attachments_not_found.test_retrieve_mail_attachments_with_regex_found.test_retrieve_mail_attachments_with_regex_not_found.test_retrieve_mail_attachments_latest_only.test_download_mail_attachments_found.test_download_mail_attachments_not_found.test_download_mail_attachments_with_regex_found.test_download_mail_attachments_with_regex_not_found.test_download_mail_attachments_with_latest_only.test_download_mail_attachments_with_escaping_chars.test_download_mail_attachments_with_symlink. My commits all reference JIRA issues in their subject lines, and I have squashed multiple commits if they address the same issue. In addition, my commits follow the guidelines from ""How to write a good git commit message"":
+
+Subject is separated from body by a blank line
+Subject is limited to 50 characters
+Subject does not end with a period
+Subject uses the imperative mood (""add"", not ""adding"")
+Body wraps at 72 characters
+Body explains ""what"" and ""why"", not ""how""
+
+.Subject is separated from body by a blank line.Subject is limited to 50 characters.Subject does not end with a period.Subject uses the imperative mood (""add"", not ""adding"").Body wraps at 72 characters.Body explains ""what"" and ""why"", not ""how"". In case of new functionality, my PR adds documentation that describes how to use it.
+
+When adding new operators/hooks/sensors, the autoclass documentation generation needs to be added.
+
+.When adding new operators/hooks/sensors, the autoclass documentation generation needs to be added.. Passes git diff upstream/master -u -- ""*.py"" | flake8 --diff.",4,0,0,regEx,new feature, 
+29,"
+        String.split via fastpath instead of precompiled Pattern
+      ","https://stackoverflow.com/questions/29393086/pattern-split-slower-than-string-split.benchmark:.`
+public class SplitTest {.}
+`.results using java version ""1.8.0_192"":
+String.split: 33 MB 16 ms Pattern: 57 MB 47 ms.",3,0,0,Other,other failure, 
+30,"
+        Fix integration test script on mac
+      ",It seems like Python on mac doesn't like '' in command line. Change regex to avoid ''..,1,1,6,regEx,other failure,accepting invalid strings(T2)
+31,"
+        [BEAM-4385][SQL] Add LIKE operator to Beam SQL
+      ","Add LIKE operator to Beam SQL to support the use case like SELECT * FROM table WHERE str_col LIKE <regex>..Follow this checklist to help us incorporate your contribution quickly and easily:. Format the pull request title like [BEAM-XXX] Fixes bug in ApproximateQuantiles, where you replace BEAM-XXX with the appropriate JIRA issue, if applicable. This will automatically link the pull request to the issue.. If this contribution is large, please file an Apache Individual Contributor License Agreement..to: @kennknowles could you please take a look at this PR?.",2,7,124,regEx,other failure, 
+32,"
+        WW-4862: Multipart regex
+      ",Fixes issue WW-4862.,3,0,0,regEx,other failure, 
+33,"
+        WW-4540: Strict DMI
+      ","This PR enables Strict DMI by default. Thus will limit possible methods which can be called and executed as action methods. You can control Strict DMI per package using strict-method-invocation attribute..Right now you can configure global-allowed-methods and allowed-methods via struts.xml or use annotation @AllowedMethods on class/package level..To use the new functionality you must update DTD definition to 2.5..Strict DMI works in the following way:.<allowed-methods> / @AllowedMethods is defined per action - Strict DMI works without switching it on but just for those actions (plus adding <global-allowed-methods/>).Strict DMI enabled but no <allowed-methods> / @AllowedMethods are defined - Strict DMI works but only with <global-allowed-methods/>.Strict DMI disabled - call to any action method is allowed (Regex: .*).per <action/> add <allowed-methods/> tag with comma separated list of allowed methods, ie.globally with <global-allowed-methods/> (it is inherited from package to package).per class.per package in package-info.java file.Allowed methods can be defined as.literals ie. execute,cancel.patterns when using with wildcard mapping, i.e <action ... method=""do{2}"">.RegExs using regex: prefix, ie: <global-allowed-methods>execute,input,cancel,regex:user([A-Z]*)</global-allowed-methods>.",32,0,0,regEx,new feature,regex configuration entry
+34,"
+        Add sec-bugs plugin. Closes #618
+      ",Replaced Math.Random with SecureRandom.Sanitize user input in log messages to prevent potential CRLF injection.Use SHA-256 instead of MD5 or SHA-1.Remove unused method in CryptoUtils.Replace vulnerable regex in Monitor param validation.,2,104,766,regEx,bad smell,data processing
+35,"
+        Add sec-bugs plugin. Closes #618
+      ",Replaced Math.Random with SecureRandom.Sanitize user input in log messages to prevent potential CRLF injection.Use SHA-256 instead of MD5 or SHA-1.Remove unused method in CryptoUtils.Replace vulnerable regex in Monitor param validation.,2,104,766,regEx,bad smell,data processing
+36,"
+        tweak regex for crumbissuer, xml is valid also
+      ","tweak regex for crumbissuer, xml is valid also.",2,0,0,regEx,other failure, 
+37,"
+        Regex search query
+      ",This PR adds a SearchQuerySpec that supports searching for a regex. It uses the same regex pattern match as the RegexFilter..I will be adding documentation shortly..,1,4,171,regEx,new feature,code smells
+38,"
+        TIKA-2449: Enabling extraction of standard references from text
+      ","Apache Tika currently provides many ContentHandler which help to de-obfuscate specific types of information from text. For instance, the PhoneExtractingContentHandler is used to extract phone numbers while parsing..This improvement adds the StandardsExtractingContentHandler to Tika, a new ContentHandler that relies on regular expressions in order to identify and extract standard references from text.
+Basically, a standard reference is just a reference to a norm/convention/requirement (i.e., a standard) released by a standard organization. This work is maily focused on identifying and extracting the references to the standards already cited within a given document (e.g., SOW/PWS) so the references can be stored and provided to the user as additional metadata in case the StandardExtractingContentHandler is used..In addition to the patch, the first version of the StandardsExtractingContentHandler along with an example class to easily execute the handler is available on GitHub. The following sections provide more in detail how the StandardsExtractingHandler has been developed..All the details are reported on Jira (TIKA-2449)..From a technical perspective, a standard reference is a string that is usually composed of two parts:.the name of the standard organization;.the alphanumeric identifier of the standard within the organization.
+Specifically, the first part can include the acronym or the full name of the standard organization or even both, and the second part can include an alphanumeric string, possibly containing one or more separation symbols (e.g., ""-"", ""_"", ""."") depending on the format adopted by the organization, representing the identifier of the standard within the organization..Furthermore, the standard references are usually reported within the ""Applicable Documents"" or ""References"" section of a SOW, and they can be cited also within sections that include in the header the word ""standard"", ""requirement"", ""guideline"", or ""compliance""..Consequently, the citation of standard references within a SOW/PWS document can be summarized by the following rules:.RULE 1: standard references are usually reported within the section named ""Applicable Documents"" or ""References""..RULE 2: standard references can be cited also within sections including the word ""compliance"" or another semantically-equivalent word in their name..RULE 3: standard references is composed of two parts:
+
+Name of the standard organization (acronym, full name, or both).
+Alphanumeric identifier of the standard within the organization.
+
+.Name of the standard organization (acronym, full name, or both)..Alphanumeric identifier of the standard within the organization..RULE 4: The name of the standard organization includes the acronym or the full name or both. The name must belong to the set of standard organizations S = O U V, where O represents the set of open standard organizations (e.g., ANSI) and V represents the set of vendor-specific standard organizations (e.g., Motorola)..RULE 5: A separation symbol (e.g., ""-"", ""_"", ""."" or whitespace) can be used between the name of the standard organization and the alphanumeric identifier..RULE 6: The alphanumeric identifier of the standard is composed of alphabetic and numeric characters, possibly split in two or more parts by a separation symbol (e.g., ""-"", ""_"", ""."")..On the basis of the above rules, here are some examples of formats used for reporting standard references within a SOW/PWS:.<ORGANIZATION_ACRONYM><SEPARATION_SYMBOL><ALPHANUMERIC_IDENTIFIER>.<ORGANIZATION_ACRONYM><SEPARATION_SYMBOL>(<ORGANIZATION_FULL_NAME>)<SEPARATION_SYMBOL><ALPHANUMERIC_IDENTIFIER>.<ORGANIZATION_FULL_NAME><SEPARATION_SYMBOL>(<ORGANIZATION_FULL_NAME>)<SEPARATION_SYMBOL><ALPHANUMERIC_IDENTIFIER>.Moreover, some standards are sometimes released by two standard organizations. In this case, the standard reference can be reported as follows:.<MAIN_ORGANIZATION_ACRONYM>/<SECOND_ORGANIZATION_ACRONYM><SEPARATION_SYMBOL><ALPHANUMERIC_IDENTIFIER>.The StandardsExtractingContentHandler uses a helper class named StandardsText that relies on Java regular expressions and provides some methods to identify headers and standard references, and determine the score of the references found within the given text..Here are the main regular expressions used within the StandardsText class:.REGEX_HEADER: regular expression to match only uppercase headers.
+(\d+\.(\d+\.?)*)\p{Blank}+([A-Z]+(\s[A-Z]+)*){5,}
+
+.REGEX_APPLICABLE_DOCUMENTS: regular expression to match the the header of ""APPLICABLE DOCUMENTS"" and equivalent sections.
+(?i:.*APPLICABLE\sDOCUMENTS|REFERENCE|STANDARD|REQUIREMENT|GUIDELINE|COMPLIANCE.*)
+
+.REGEX_FALLBACK: regular expression to match a string that is supposed to be a standard reference.
+\(?(?<mainOrganization>[A-Z]\w+)\)?((\s?(?<separator>\/)\s?)(\w+\s)*\(?(?<secondOrganization>[A-Z]\w+)\)?)?(\s(Publication|Standard))?(-|\s)?(?<identifier>([0-9]{3,}|([A-Z]+(-|_|\.)?[0-9]{2,}))((-|_|\.)?[A-Z0-9]+)*)
+
+.REGEX_STANDARD: regular expression to match the standard organization within a string potentially representing a standard reference.
+This regular expression is obtained by using a helper class named StandardOrganizations that provides a list of the most important standard organizations reported on Wikipedia. Basically, the list is composed of International standard organizations, Regional standard organizations, and American and British among Nationally-based standard organizations. Other lists of standard organizations are reported on OpenStandards and IBR Standards Portal..The standard references identification performed by using the StandardsExtractingContentHandler is based on the following steps (see also the flow chart):.searches for headers;.searches for patterns that are supposed to be standard references (basically, every string mostly composed of uppercase letters followed by an alphanumeric characters);.each potential standard reference starts with score equal to 0.25;.increases by 0.50 the score of references which include the name of a known standard organization;.increases by 0.25 the score of references which have been found within ""Applicable Documents"" and equivalent sections;.returns the standard references along with scores;.adds the standard references as additional metadata..The unit test is implemented within the StandardsExtractingContentHandlerTest class and extracts the standard references from a SOW downloaded from the FOIA Library. This SOW is also provide on Jira..The StandardsExtractionExample is a class to demonstrate how to use the StandardsExtractingContentHandler to get a list of the standard references from every file in a directory..",3,0,0,regEx,new feature,data processing
+39,"
+        JENA-1403: Tidy up regex pattern handling.
+      ","This includes PR#291, and consolidates pattern exceptions into RegexJava..Full handling with Xerces regexp for ""replace"" functionality is a lot of work as Xerces has a separate, parallel set of classes; it is only the ""x"" flag that is missing from Java. JDK regex is likely to be faster. JDK has been the normal setting; Xerces is there for exact spec compliance in REGEX only..We don't want more Xerces specific dependencies..",2,5,127,regEx,other failure,code smells
+40,"
+        [KARAF-5801] Add regex filtering in the file collector and fix tailer threading
+      ","
+No description provided.
+.",1,0,0,regEx,incorrect behavior,regex like implementation
+41,"
+        Added RegEx Exclude Comparator
+      ","This Comparator takes Regular Expression as input and compare it with the absolute path of data file. Returns 0 if match found, else 1..",2,0,0,Other,other failure, 
+42,"
+        Fixed regex used in getPackageFileInfo().
+      ",Match failed for version that contains more than one digit in any part (e.g. 1.1.1.99)..,2,0,0,regEx,other failure, 
+43,"
+        Fix USERGRID-225 by allowing ${blah} expressions in paths.
+      ",This new regex allows paths to be specified like so:.See also: https://issues.apache.org/jira/browse/USERGRID-225.,1,0,0,regEx,other failure, 
+44,"
+        NUTCH-1678 Remove dependency on org.apache.oro
+      ","(cf. NUTCH-2192).replace oro with java.util.regex classes in OutlinkExtractor, plugins parse-js and index-more.extend unit tests of parse-js.correct pointer to Java regex syntax (instead of ""Perl5"").",1,12,347,regEx,bad smell,code smells
+45,"
+        ARTEMIS-298 IPv6 escape broken
+      ","Previously we were using a long regular expression to detect whether or not a
+given host was IPv6. However, this was brittle and hard to read. Since we are
+already shipping Google Guava in the distribution it made sense to use the
+Guava method com.google.common.net.InetAddresses#isInetAddress rather than
+the regular expression..",1,0,0,regEx,other failure, 
+46,"
+        Support arbitrary percentile for percentile aggregation functions
+      ","Use regex matching to automatically figure out the percentile.Remove redundant aggregation function types.Change the AggregationFunctionType.isOfType() so that it won't throw exception when function name is not a valid aggregation function type. When matching function name with specific types, it should not throw any exception.",1,0,0,regEx,other failure,code smells
+47,"
+        WW-4834 fixed faulty regex
+      ","
+No description provided.
+.",3,0,0,regEx,incorrect behavior, 
+48,"
+        Usergrid 669
+      ","Updates our document fields to be more descriptive and parsable.Changes our parsing to use REGEX, to ensure we can always parse our document data correctly, regardless of input format..",4,0,0,Other,bad smell, 
+49,"
+        [Explore] expanding regex for automated columns
+      ","Autogenerated metrics can also be of the form AGGREGATE(""table_name"".""column_name""), here I expand the regex to cover such cases..test plan:.added a spec.reviewers:
+@michellethomas @williaster @john-bodley @graceguo-supercat.",1,2,13,regEx,new feature, 
+50,"
+        LANG-1139: Add null safe methods in StringUtils to replace by regular…
+      ","Add null safe methods in StringUtils to replace by regular expression :.The replacePattern(final String source, final String regex, final String replacement) method adds Pattern#DOTALL option by default which may be undesired. Moreover, this methods is not null safe..",1,2,161,regEx,new feature,code smells
+51,"
+        BROOKLYN-433: regex/obj config key constraint in yaml
+      ","Docs PR will follow, to update the constraints section in https://github.com/apache/brooklyn-docs/blob/master/guide/yaml/yaml-reference.md.",1,0,0,regEx,bad smell,regex configuration entry
+52,"
+        WW-4818 change default Multipart validation regex to comply with RFC1341
+      ","
+No description provided.
+.",2,0,0,regEx,incorrect behavior, 
+53,"
+        [FLINK-9987][tests] Harden ClassLoader E2E test
+      ","This PR hardens the ClassLoader end-to-end test..retrieve commit id from .version.properties as the value has a well-defined format.do not access .version.properties file in source of flink-runtime and match id against regex instead
+
+prevents failures caused by value mismatches if the binary does not originate from the source
+prevents failures when flink-runtime has not been built, e.g. if the tests were run in a clean repo
+removes access outside of flink-end-to-end-tests which is good for maintainability
+
+.prevents failures caused by value mismatches if the binary does not originate from the source.prevents failures when flink-runtime has not been built, e.g. if the tests were run in a clean repo.removes access outside of flink-end-to-end-tests which is good for maintainability.exit early on test failure
+
+same behavior as if the test was split in several files
+
+.same behavior as if the test was split in several files.",2,0,0,regEx,incorrect behavior, 
+54,"
+        Improve hive/pyhive error message regex
+      ",@betodealmeida thanks for the regex help.,1,0,0,regEx,other failure, 
+55,"
+        MINOR: Update Trogdor StringExpander regex to handle epilogue
+      ","As @yangxi pointed out, having the lazy quantifier ? in the epilogue group of the regex (.*?) would mean that strings after the range quantifier would not get caught. e.g ""aaa[1-2]aa"" => ""aaa1, aaa2"".Also see/play-around with https://regex101.com/r/WGIT7W/1.I also removed the lazy quantifier in the beginning - no strong opinion there - but I'd somehow prefer if the regex would pick the right-most range expression when using nested expressions. Removing the lazy quantifier in the beginning ensures that. Seems more natural..cc @cmccabe for review.",2,2,17,regEx,other failure,incorrect extraction
+56,"
+        Tweak whitelist URI parsing to fix whitelist issues with @2x resource na...
+      ","...ming.Image filenames containing ""@2x"" were causing parsing issues with the parseUri() regex. This patch adjusts the regex to prevent parsing errors with ""@2x"" filenames..",1,2,16,regEx,bad smell,incorrect extraction
+57,"
+        add PrefixFilteredDimensionSpec for multi-value dimensions
+      ","In our case, we want to query data from multi-value dimensions which value has same prefix. Using function startWith is more efficiency than regex expression..",4,0,0,regEx,new feature, 
+58,"
+        AMBARI-23710 : Ambari Metrics Service check fails on Ubuntu16.
+      ","Increased scope of regex used to find libsnappy library from hadoop tar. In Ubuntu, the libsnappy version is libsnappy.so.1.3.0 and not libsnappy.so.1.1.0..mvn clean install on ambari-metrics.",1,1,2,regEx,other failure, 
+59,"
+        [NETBEANS-643] Mercurial Annotate fails on file with spaces and leading dots
+      ","In PR #508 it was suggested to modify the regular expression used to parse the
+output of the mercurial annotate command. While testing it was identified, that
+more corner cases need to be covered..This PR supersedes the referenced PR with a further modified regexp. It also
+adds an analysis/description for the format and supplies unittests..Closes: #508.",1,2,230,regEx,new feature, 
+60,"
+        [Explore][Adhoc Metrics] updating adhoc metric filtering
+      ","The adhoc metric control filters out all saved metrics that can be represented as simple adhoc metrics. However, at Airbnb some use cases have come up where people have wanted to use these simple saved metrics anyway so they can leverage consistent naming for these metrics across slices. As a result I have changed the filtering regex to look for metric_names like {aggregate}__{column}..test plan:.open explore view with energy_usage datasource.verify the sum and average saved metrics do not appear.run specs.reviewers:
+@john-bodley @michellethomas @graceguo-supercat @mistercrunch.",1,3,26,regEx,bad smell, 
+61,"
+        [MRQL-69] Allow escaped quotes in JSON strings
+      ","Changed the regular expression for JSON strings to allow "" inside a string..",1,1,6,regEx,other failure, 
+62,"
+        Add support for regex scans and lax on Golang tabs.
+      ","
+No description provided.
+.",4,4,92,regEx,other failure, 
+63,"
+        PIP-13-2/3: support regex based subscription
+      ","This is a second sub-task for pip-13, which would like to leverage the first task to support regex based subscription..add subscribe methods with regex pattern in PulsarClientImpl..add PatternTopicsConsumerImpl, which extends TopicsConsumerImpl..add a proto command to get topics under a namespace..add a test to verify..old methods behaviour not changed,
+user could use new method to subscribe to topics based on regex pattern.",4,22,1722,regEx,new feature,code smells
+64,"
+        JENA-1360: Improve regex compliance
+      ","Add support for ""q""..Testing to cover both regex engines..Switch off static compilation when in strict mode..Check flags.",1,0,0,regEx,other failure, 
+65,"
+        Normalize plugin paths that include both slashes and dots
+      ","If the path to AIRFLOW_HOME contains a dot (e.g. /home/user/foo.bar), the plugins manager will fail to load the source properly due to the dot demarcating a parent module.  Sample error output:.RuntimeWarning: Parent module '__user__foo' not found ....The line where the normalization occurs is: https://github.com/airbnb/airflow/blob/master/airflow/plugins_manager.py#L57.This changeset applies a regex to account for both slashes and dots when normalizing the namespace..",1,1,8,regEx,incorrect behavior, 
+66,"
+        better regex for durations
+      ","
+No description provided.
+.",1,1,24,regEx,bad smell,rejecting valid strings (T1)
+67,"
+        Introduce regex Pattern literal ~//
+      ","
+No description provided.
+.",4,0,0,regEx,other failure, 
+68,"
+        AMBARI-23326. Add custom context root support to quicklink engine (am…
+      ","Adding placeholder replacement ability to quicklink engine..A placeholder looks like ${config-type/property-name}.For example if an URL contains ${gateway-site/gateway.path} then this pattern will be replaced with the value from config-type=gateway-site, property-name=gateway.path.Used the following quicklink.json.",1,2,37,API,incorrect behavior,data processing
+69,"
+        tweak SSP mail form regex for mods
+      ",tweak SSP mail form regex for mods.,1,0,0,regEx,other failure,accepting invalid strings(T2)
+70,"
+        Update checkstyle to use import-control for API checking
+      ",This should be easier to maintain than the regex (at least for 2.0) and the output is a lot more helpful:.VS the old output.There are a lot of crazy things you can do with the import-control checkstyle rule but this was the best I could come up with....I also upgraded the checkstyle plugin to 3.0.0 and made it use the latest checkstyle dependency 8.17..,4,0,0,regEx,other failure, 
+71,"
+        Adding regex predicate support
+      ","Adding support for the REGEXP_LIKE operator..REGEXP_LIKE operator supports java style regular expressions. All comparisons are case insensitive by default. One can turn on/off flags by using Embedded Flag Expressions.e.g queries.Note the initial commit supported MySQL  LIKE semantics but it was getting complicated to convert a LIKE expression to java regex expression and hence dropped it in the subsequent commit. Note the pattern does not have to match the entire string. If users want to match the entire string, they can use ^ at the start and $ at the end of the expression..",5,0,0,regEx,other failure, 
+72,"
+        [sqllab] Fix sqllab limit regex issue with sqlparse
+      ","This PR fixes the sqllab regex issues with Offset and tricky limits that regex doesn't handle correctly. It replaces the regex approach with sqlparse..The queries below failed before but now they are successful. Fixes #5272.select * from table where a=True limit 1, 2
+select * from table where a=True limit 1 offset 10
+select 'limit 10'.@conglei @john-bodley @mistercrunch.",2,3,168,regEx,bad smell,rejecting valid strings (T1)
+73,"
+        DRILL-4551: Implement new functions (cot, regex_matches, split_part, …
+      ",…isdate).,1,0,0,regEx,other failure, 
+74,"
+        [sql lab] a better approach at limiting queries
+      ","Currently there are two mechanisms that we use to enforce the row
+limiting constraints, depending on the database engine:.use dbapi's cursor.fetchmany().wrap the SQL into a limiting subquery.Method 1 isn't great as it can result in the database server storing
+larger than required result sets in memory expecting another fetch
+command while we know we don't need that..Method 2 has a positive side of working with all database engines,
+whether they use LIMIT, ROWNUM, TOP or whatever else since sqlalchemy
+does the work as specified for the dialect. On the downside though
+the query optimizer might not be able to optimize this as much as an
+approach that doesn't use a subquery..Since most modern DBs use the LIMIT syntax, this adds a regex approach
+to modify the query and force a LIMIT clause without using a subquery
+for the database that support this syntax and uses method 2 for all
+others..",5,6,216,regEx,new feature, 
+75,"
+        WW-4834 Improve RegEx used to validate URLs
+      ",changed the regex according to 8df5a89#commitcomment-23414493.Can anyone tell me if the optional # on line 54 is needed?.,1,0,0,regEx,incorrect behavior, 
+76,"
+        NUTCH-2192 Migrate from Apache ORO to java.util.regex
+      ","(also fixes NUTCH-1678, NUTCH-1014 and NUTCH-1021).apply Markus' patch of NUTCH-2192.finish migration of parse-js.remove oro dependency.correct pointer to Java regex syntax (instead of ""Perl5"").NUTCH-1063 ""OutlinkExtractor test generates an exception but does not fail"" is fixed by adding null-check (required anyway by java.util.regex classes).adds a JUnit test for parse-js (NUTCH-1121) ported from 2.x and extended.",3,0,0,regEx,new feature, 
+77,"
+        yaml-test assertions: fix use of “matches”
+      ","Previously matches: <regex> would not work well for multi-line..For example, if using something like:.and the ssh command outputs:.then it would not match..You can see this in pure java: ""foo1\nfoo2\n"".matches("".*foo.*"") is false..This PR changes our ""matches"" to do two things: first it tries to match the regex against the entire string; but if that does't work then it splits the input string into multiple lines and checks if the regex matches against any single line - if it does, then it considers it a match..Do you agree that is what the user will find most intuitive?.",1,2,36,regEx,incorrect computation, 
+78,"
+        Regex path matching in Sling Dynamic Include
+      ","In some cases one might want to include external content to a page. Example of such external content are AEM Experience Fragments or Content Fragments, or Zen Garden Snippets.
+Sometimes such 3rd party content can be categorized into two categories:.not included by SDI - content which should not be included separately (for example when content requires page context).included by SDI - content which is static, so it can be cached because it does not change often (header, footer), or because it changes once per week and we don't want to invalidate whole cache..Example content structure:./content/my-site/my-micro-site/en_gl/content/fragments/./content/my-site/my-micro-site/en_gl/content/fragments/cacheable-fragments.When content is specific to market (by market I mean for example British market, German market etc.), and we would want to include that 3rd party content using SDI, we would have to provide one Sling Dynamic Include configuration per market.
+As you may know, one site can have 100 or more markets, it means at least 100 configuration for such simple case (and usually, it's not the only one!)..Solution for this problem is to change the way, how SDI performs check on the path.
+Currently SDI checks if requested resource path starts from the configured path.
+Instead of simple check with startsWith, SDI should support regular expressions, which are much more flexible..In the given scenario we would have one simple configuration with path configured to:.^/content/my-site/([a-zA-Z-]+)/([a-z]{2}[a-z]{2})/content/fragments/cacheable-fragments$.Jira ticket: https://issues.apache.org/jira/browse/SLING-7621.",7,0,0,regEx,incorrect behavior,regex configuration entry
+79,"
+        CB-13496: Fix greedy regex in plist-helpers
+      ","iOS.Resolves an issue where a regex was overly greedy when comparing plist entries for merging and could result in collapsing several of them into a single entry..Added a test that fails with current master and passes with this change, based on the details provided by @knight9999 in the JIRA bug. It sounds like this might be the cause of GH-44 as well (/fyi @donnie-jp)..Now, my fix assumes that we're always looking for $(something) and not just $something, which might not be a safe assumption. Unfortunately I'm not well-versed enough in iOS stuff to know :(. Reported an issue in the JIRA database. Commit message follows the format. Added automated test coverage as appropriate for this change..",1,2,34,regEx,incorrect behavior,incorrect extraction
+80,"
+        NUTCH-2689 Speed up urlfilter-regex and urlfilter-automaton
+      ","do not extract host and domain name from the URL if not needed.speed up regular expressions:
+
+use non-capturing groups if possible
+use (?i) to make the patterns case insensitive and remove uppercase variants to keep alternations shorter
+
+.use non-capturing groups if possible.use (?i) to make the patterns case insensitive and remove uppercase variants to keep alternations shorter.",1,0,0,regEx,other failure, 
+81,"
+        NUTCH-2689 Speed up urlfilter-regex and urlfilter-automaton
+      ","do not extract host and domain name from the URL if not needed.speed up regular expressions:
+
+use non-capturing groups if possible
+use (?i) to make the patterns case insensitive and remove uppercase variants to keep alternations shorter
+
+.use non-capturing groups if possible.use (?i) to make the patterns case insensitive and remove uppercase variants to keep alternations shorter.",1,0,0,regEx,other failure, 
+82,"
+        [KARAF-6120] Fix Windows separator confusing regex in Profiles
+      ","A number of places are using the String.replaceAll() method to inject/remove the file system path separator. In the case of Windows, the \ is a regex partial escape sequence. replaceAll()'s parameters are part of regex. Instead, using replace() to fix the problem..",1,0,0,regEx,compile error, 
+83,"
+        CB-14198: (all) Fix bug when running simulate --target= under non-US Windows 10
+      ","This is an improved version of #11 PR created by @pklaes . So almost all the information was copied from there..all.From https://issues.apache.org/jira/browse/CB-14198:
+When running cordova simulate with a specific browser, e.g..simulate android --target=chrome.the simulation does not start but instead throws an error:.Reason is a language-dependent result from reg.exe when querying the path/to/browser in the regex line 201 in browser.js.The output from reg.exe for chrome (parameter stdout) is in my configuration:.But the code expects (Note (Standard) vs. (Default)) :.Only on my local machine with:.Windows 10 English Version 1803
+cordova@8.1.2
+cordova-android@7.1.4
+cordova-simulate@0.4.0
+cordova-serve@2.0.1.Also automated tests has been added for cases where registry key for browser is not equal ""Default"".. Reported an issue in the JIRA database. Commit message follows the format: ""CB-3232: (android) Fix bug with resolving file paths"", where CB-xxxx is the JIRA ID & ""android"" is the platform affected.. Added automated test coverage as appropriate for this change..",9,2,21,regEx,new feature,regex configuration entry
+84,"
+        Cpp client: add PatternMultiTopicsConsumerImpl to support regex subscribe
+      ",In PR #1279 and #1298 we added regex based subscription. This is a catch up work to add PatternMultiTopicsConsumerImpl in cpp client..,3,21,1064,regEx,new feature, 
+85,"
+        SLING-7741 - org.apache.sling.xss.impl.XSSAPIImpl#getValidHref doesn't correctly handle the "":"" character in URL fragments
+      ",implemented the URI grammar from RFC3986 as a set of regular expressions to allow colons to be used in the URIs.modified mangleNamespaces function to only perform namespace mangling for paths.extended tests.This PR is mutually exclusive with #2 ..,3,0,0,regEx,incorrect behavior, 
+86,"
+        [sql lab] extract Hive error messages
+      ","So pyhive returns an exception object with a stringified thrift error
+object. This PR uses a regex to extract the errorMessage portion of that
+string..",2,2,27,regEx,other failure, 
+87,"
+        Replace jakarta-regexp with java.util.regex
+      ","Hi,.I'd like to suggest the removal of the dependency on the old jakarta-regexp API and replace it with the standard java.util.regex API in the scm providers. Here is the changeset implementing this..",8,45,1142,regEx,bad smell, 

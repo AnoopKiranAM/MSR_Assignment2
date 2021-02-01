@@ -64,7 +64,7 @@ As part of the answering the research question 2 from the paper we have successf
 2) the number of commits in the PR;    
 3) the number of lines changed in the fixes;    
 4) the number of files touched in the fixes.    
-To measure this we have to find the things mentioned above from each of the PR. Which we have succefully done. We have also executed the **Mann-Whitney-Wilcoxon Test** the result of which will be in the python file which is executed which shows the data obtained by the author and the data we have obtained using our methodology are almost same with similar distribution.   
+To measure this we have to find the things mentioned above from each of the PR. Which we have succefully done. We have also executed the **Mann-Whitney-Wilcoxon Test** the result of which will be in the python file which is executed which shows the data obtained by the author and the data we have obtained using our methodology are almost same with similar distribution(Bar Graph)   
 
 
 ## Data   
@@ -76,9 +76,10 @@ The result of the execution is stored in the [result.csv](https://github.com/Ano
 
 ## Delta   
 ### Process Delta:   
-Our process includes the Automation and involves more technical things of what the authors have done manually in the paper. We have tried to answer the RQ1 of the paper quite effectively in finding the root cause, manifestation and category of the PR's.   
+Our process includes the Effort of automation and involves more technical things of what the authors have done manually in the actual research paper. We have tried to answer the RQ1 of the paper quite effectively in finding the root cause, manifestation and category of the PR's. As part of RQ1 we have identified the characteristics of problems being addressed in RegEx related PR's. The columns "Root Cause", "Manifestation", "Category" have been identified with similar values as in the paper.  
 
 But we were not able to continue the anaysis of the of RQ2 to the end as we require the credentials of the other PR's of other repo used by the authors. Plus it was a combursome task to fetch all the code and analyze if there was RegEx addition(RegEx Add) or RegEx Updation(RegEx Edit) or RegEx Deletion (RegEx Delete) or RegEx API changes in the PR. This is where we faltered and couldnot complete the reproduction of the RQ2. Since we coudnt automate the process of fetching the code of every PR using the PR link, we couldnt not suggest the 10 common fix patters to fix either a RegEx Bug or RegEx API Bug.   
+
 
 
 

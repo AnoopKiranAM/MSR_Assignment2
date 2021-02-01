@@ -40,11 +40,8 @@
 **git clone https://github.com/AnoopKiranAM/MSR_Assignment2.git**   
 
 
-<br/>
-<br/>
-
+<br/>   
 #### **Step:3 Run Anaconda and Open the jupyter Notebook in browser**    
-<br/>
 <br/>   
 
 #### **Step:4 Make sure the data.csv file is in the data folder and run the python file "MSR_assignment-2"**  

@@ -47,7 +47,7 @@
 
 ### Validation:
 
-The output of the execution will be stored in the data folder with the name "result.csv". For the quicker execution we have only taken the pull request of apache repo. With all the 356 Pull request the execution takes more time as it has to scrape all the git repo of the 356 PR's.   
+The output of the execution will be stored in the data folder with the name "new_result.csv". For the quicker execution we have only taken the pull request of apache repo. With all the 356 Pull request the execution takes more time as it has to scrape all the git repo of the 356 PR's.   
 
 We have scraped the comment and the title of all the PR's and answered the research question 1
 
@@ -82,8 +82,10 @@ Total No. of PR's used for this analysis: 88 (PR of apache repository)
 ### Input Data: 
 The input file for the execution is the data.csv file present in data folder. The data.csv file was obtained from the Research Paper.  We have used the column by name "Pull Request" present in [data.csv](https://github.com/AnoopKiranAM/MSR_Assignment2/blob/main/data/data.csv) for our process. We have utilized all the PR link and using the automated process to obtaine the title, comment, conversation etc.., 
 
-### Output Data: 
-The result of the execution is stored in the [result.csv](https://github.com/AnoopKiranAM/MSR_Assignment2/blob/main/data/result.csv) file which help us in answering the Research Question 1 of the paper.    
+### Output Data:    
+Result data which is executed and stored already for a quick loopup:   
+
+The result of the execution is stored in the [result.csv](https://github.com/AnoopKiranAM/MSR_Assignment2/blob/main/data/result.csv) file which helps us in answering the Research Question 1 of the paper.    
 
 ## Delta   
 ### Process Delta:   

@@ -1,4 +1,4 @@
-# MSR_Assignment2
+# Mining software Repositiry
 
 ## Metadata   
 ##### A reproduction as part of the MSR course at MSR course 2020/21 at UniKo, CS department, SoftLang Team   
